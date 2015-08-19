@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('dirTest',[]);
+    angular.module('dirTest',['angularUtils.directives.dirPagination']);
     
     
     

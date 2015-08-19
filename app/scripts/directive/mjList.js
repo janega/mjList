@@ -7,8 +7,7 @@
 	
 var mjList = function ($injector){
 
-	return{
-		//scope: {}, //pass in enmpty true object 1+1 also works
+	return{		
 		restrict: 'E',
 		scope:{
 			//array: '=array',//= binding is both ways
@@ -24,8 +23,7 @@ var mjList = function ($injector){
 			displayproperty: '@?', //name of property rendered in list items
 			icon: '=?',//true or false show icon in upper right hand
 			iconame: '@?',//class name for icon --font awesome or bootstrap3 support
-			ulcssclass: '@?',//class the <ul> will take
-			//loading: '@',
+			ulcssclass: '@?',//class the <ul> will take			
 			factoryname: '@',//name or factory service
 			factoryget:'@',//name of method to get containg data
 			factoryarr:'@',//name of array returned from service containing data
@@ -46,7 +44,7 @@ var mjList = function ($injector){
 			if(!angular.isDefined($scope.labeldisabled)){ $scope.labeldisabled=false;  }
 			if(!angular.isDefined($scope.paginationid)){ $scope.paginationid='id';  }
 			
-			//if(!angular.isDefined($scope.title)){ $scope.title="";  }
+			
 			
 		//vars	
 			$scope.loading = true;
@@ -91,10 +89,8 @@ var mjList = function ($injector){
 						.then(function ()
 						{
 							$scope.array = factoryInstance[$scope.factoryarr];
-							// removeNulls();
-							// $scope.array.sort(compare);
-													
-							if(($scope.removeitems) === "true"){								
+                        
+							if(($scope.removeitems) === "true"){
 									removeItems();								
 							}
 							
@@ -121,7 +117,7 @@ var mjList = function ($injector){
 									$scope.array.pop(item);//popping null displayproperty vals off the array
 								}
 							 });//end forEach
-							$scope.array.sort(compare);
+							//$scope.array.sort(compare);
 							$scope.loading = false;
 						});//end service call get
 				}		
@@ -168,8 +164,12 @@ var mjList = function ($injector){
 					return -1;
         	}	
 			
+            setTimeout(function(){
+                	onActivation();
+                
+            },5000);
 
-			onActivation();
+		
 			
 		},		
 		templateUrl: 'scripts/directive/mjListTemplate.html'

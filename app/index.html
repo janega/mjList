@@ -1,19 +1,21 @@
 <html>
     
     <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet">    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet"> 
+        <link href="scripts/directive/mjListStyles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     </head>
     
     <body ng-app="dirTest">
     
         <div ng-controller="dirTestCtrl">
         
-        <h1>{{test}}</h1>
+        <h1>{{directiveName}}</h1>
         
         <mj-list
 			   type="m"
                labeldisabled="true" 
-			   selectedobj=""
+			   selectedobj="selectedObjs"
 			   setselection=""
 			   removeitems=false
 			   factoryget="getPlayers"
@@ -21,13 +23,16 @@
 			   factoryname="factory"					   
 			   searchplaceholder="Find a player"
 			   displayproperty="lnu"
-			   order="",
+			   order="lnu",
 			   selecttype="select"
 			   ulcssclass="panel-scroll-modal"
                paginationid="players1">				   	   				
         </mj-list>
             
+        
             
+           <span ng-if="selectedObjs.length===1" class="badge">{{selectedObjs.length}} player selected</span>
+             <span ng-if="selectedObjs.length>1" class="badge">{{selectedObjs.length}} players selected</span>
             
             
         

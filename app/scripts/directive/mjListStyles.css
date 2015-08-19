@@ -1,0 +1,50 @@
+.panelAddBtn{
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: #FFFFFF;
+
+}
+
+.panel-body{
+
+    padding-top:1px !important;
+    padding-bottom:1px !important;
+    padding-left:0px !important;
+    padding-right:0px !important;
+
+}
+
+.panel-scroll{    
+max-height: 350px;
+overflow-x: hidden;
+overflow-y: auto;
+ font-size:13px;
+ line-height:1.0;
+
+}
+
+.panel-scroll-modal{    
+max-height: 200px;
+overflow-x: hidden;
+overflow-y: auto;
+ font-size:12px;
+ line-height:.8 !important;
+
+
+}
+
+.right-inner-addon{position:relative;}
+.right-inner-addon input {
+    padding-right: 30px;
+  display:block;
+    height:30px;
+}
+.right-inner-addon i {
+    padding: 7px 10px;
+    padding-left: 11px;
+   position: absolute;
+  right:0
+    
+   
+}

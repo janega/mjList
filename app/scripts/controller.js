@@ -3,7 +3,8 @@
     
     function dirTestCtrl($scope,factory){
         
-        $scope.test = 'Hello Mike';
+        $scope.directiveName = 'mjList Directive Demo';
+        $scope.selectedObjs =[];
         
         
         

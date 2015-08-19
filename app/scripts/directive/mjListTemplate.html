@@ -23,8 +23,8 @@
       <input type="search" ng-model="searchText" class="form-control input-small" placeholder="{{searchplaceholder}}"/>
    </div> 
       <ul ng-if="selecttype==='select'" class="list-group" ng-class="ulcssclass">
-         <li dir-paginate="item in array | filter:searchText | itemsPerPage: 50 "  class="list-group-item" pagination-id="paginationid" ng-class="{'active': selected.indexOf(item.index) !=-1}" ng-click="select(item)">
-          <span ng-switch="item.disabled" ng-if="labeldisabled">
+         <li dir-paginate="item in array | filter:searchText | orderBy : order | itemsPerPage: 50 "  class="list-group-item" pagination-id="paginationid" ng-class="{'active': selected.indexOf(item.index) !=-1}" ng-click="select(item)">
+          <!--<span ng-switch="item.disabled" ng-if="labeldisabled">
               <span class="label label-default" ng-switch-when="true">
                     {{::item[displayproperty]}}
                     <span class="pull-right" ng-class="( selected.indexOf(item.index) !=-1) ? 'glyphicon glyphicon-ok' : '' "></span>
@@ -37,11 +37,19 @@
           <span  ng-if="!labeldisabled">
               {{::item[displayproperty]}}
               <span style="color: #92D400;" class="pull-right" ng-class="( selected.indexOf(item.index) !=-1) ? 'glyphicon glyphicon-ok' : '' "></span>
-          </span>
+          </span>-->
+             
+                    {{::item[displayproperty]}}
+                    <span class="pull-right" ng-class="( selected.indexOf(item.index) !=-1) ? 'glyphicon glyphicon-ok' : '' "></span>
+              
           </ul>
    </div>
          
 </div>  
 <div ng-if="!loading"  class="text-center">
-  <dir-pagination-controls max-size="10" boundary-links="true" template-url="scripts/dependencies/dirPagination.tpl.html" pagination-id="paginationid"></dir-pagination-controls>       
+  <dir-pagination-controls max-size="10" boundary-links="true" template-url="scripts/dependencies/dirPagination.tpl.html" pagination-id="paginationid"></dir-pagination-controls>
+    <div>
+        <span ng-if="selectedObjs.length===1" class="badge">{{selectedObjs.length}} {{searchplaceholder}} selected</span>
+             <span ng-if="selectedObjs.length>1" class="badge">{{selectedObjs.length}} {{searchplaceholder}}s selected</span>
+            </div>
 </div>
