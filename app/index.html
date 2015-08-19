@@ -1,0 +1,48 @@
+<html>
+    
+    <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet">    
+    </head>
+    
+    <body ng-app="dirTest">
+    
+        <div ng-controller="dirTestCtrl">
+        
+        <h1>{{test}}</h1>
+        
+        <mj-list
+			   type="m"
+               labeldisabled="true" 
+			   selectedobj=""
+			   setselection=""
+			   removeitems=false
+			   factoryget="getPlayers"
+			   factoryarr="players"					   
+			   factoryname="factory"					   
+			   searchplaceholder="Find a player"
+			   displayproperty="lnu"
+			   order="",
+			   selecttype="select"
+			   ulcssclass="panel-scroll-modal"
+               paginationid="players1">				   	   				
+        </mj-list>
+            
+            
+            
+            
+        
+        </div>
+        
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controller.js"></script>
+    <script src="scripts/factory.js"></script>
+    <!--dependencies scripts-->    
+    <script src="scripts/dependencies/dirPagination.js"></script>
+    <!-- directive scripts -->
+    <script src="scripts/directive/mjList.js"></script>
+        
+        
+    
+    </body>
+</html>
