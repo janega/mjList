@@ -2,54 +2,38 @@
 <div ng-if="directiveErr">
 	<alert class="alert-danger">Problem with directive check console.log()</alert>
 </div>
+<div ng-if="loading" >
+         <i style="left:50%; position: absolute;" class="fa fa-cog fa-spin fa-5x"></i>
+    </div>
 
-<div ng-if="!directiveErr" class="panel panel-primary">
-   <div ng-if="showheader" class="panel-heading">
-    <!--  <span ng-if="type==='s'" class="pull-right panelAddBtn label label-success label-as-badge success" tooltip-placement="top" tooltip="">{{selectedobj.name}}</span> -->
+<div ng-if="!directiveErr && !loading" class="panel panel-primary">
+   <div ng-if="(showheader && !loading)" class="panel-heading">
+    
     <span ng-if="icon===true" class="btn btn-xs pull-right panelAddBtn" ng-class="iconame" tooltip-placement="top" tooltip=""></span> 
        <h3 class="panel-title">{{::title}}</h3>
 
    </div>
-
-   <!-- <div ng-if="loading">
-       <img  src="images/spinners/ajax-loader.gif" alt="" />
-    </div> -->
-     <div ng-if="loading" >
-         <i style="left:50%; position: absolute;" class="fa fa-cog fa-spin fa-5x"></i>
-    </div>
+ 
+     
    <div ng-if="!loading" class="panel-body">
+       <div class="pull-left" style="padding:5px;">
+             <span ng-if="selectedItems.length===1" class="badge">{{selectedItems.length}} item selected</span>
+             <span ng-if="selectedItems.length>1" class="badge">{{selectedItems.length}} items selected</span>
+    </div> 
    <div style="margin-left:auto;margin-right:auto;width:70%;padding-top:3px;padding-bottom:3px" class="right-inner-addon">
        <i class="glyphicon glyphicon-search"></i>
       <input type="search" ng-model="searchText" class="form-control input-small" placeholder="{{searchplaceholder}}"/>
    </div> 
       <ul ng-if="selecttype==='select'" class="list-group" ng-class="ulcssclass">
-         <li dir-paginate="item in array | filter:searchText | orderBy : order | itemsPerPage: 50 "  class="list-group-item" pagination-id="paginationid" ng-class="{'active': selected.indexOf(item.index) !=-1}" ng-click="select(item)">
-          <!--<span ng-switch="item.disabled" ng-if="labeldisabled">
-              <span class="label label-default" ng-switch-when="true">
-                    {{::item[displayproperty]}}
-                    <span class="pull-right" ng-class="( selected.indexOf(item.index) !=-1) ? 'glyphicon glyphicon-ok' : '' "></span>
-              </span>
-              <span ng-switch-when="false" >
-                    {{::item[displayproperty]}}
-                    <span style="color: #92D400;" class="pull-right" ng-class="( selected.indexOf(item.index) !=-1) ? 'glyphicon glyphicon-ok' : '' "></span>
-              </span>
-          </span>
-          <span  ng-if="!labeldisabled">
-              {{::item[displayproperty]}}
-              <span style="color: #92D400;" class="pull-right" ng-class="( selected.indexOf(item.index) !=-1) ? 'glyphicon glyphicon-ok' : '' "></span>
-          </span>-->
-             
+         <li dir-paginate="item in array | filter:searchText | orderBy : order | itemsPerPage: itemperpage "  class="list-group-item" pagination-id="paginationid" ng-class="{'active': selected.indexOf(item.index) !=-1}" ng-click="select(item)">
                     {{::item[displayproperty]}}
                     <span class="pull-right" ng-class="( selected.indexOf(item.index) !=-1) ? 'glyphicon glyphicon-ok' : '' "></span>
               
           </ul>
    </div>
-         
 </div>  
+        
 <div ng-if="!loading"  class="text-center">
   <dir-pagination-controls max-size="10" boundary-links="true" template-url="scripts/dependencies/dirPagination.tpl.html" pagination-id="paginationid"></dir-pagination-controls>
-    <div>
-        <span ng-if="selectedObjs.length===1" class="badge">{{selectedObjs.length}} {{searchplaceholder}} selected</span>
-             <span ng-if="selectedObjs.length>1" class="badge">{{selectedObjs.length}} {{searchplaceholder}}s selected</span>
-            </div>
+    
 </div>

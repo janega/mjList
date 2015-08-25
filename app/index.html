@@ -4,6 +4,16 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css" rel="stylesheet"> 
         <link href="scripts/directive/mjListStyles.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        
+        <style>
+            .selected{
+                max-height: 350px;   
+                overflow-y: auto;
+                overflow-x: hidden;
+                font-size: 8px;
+                line-height: .8;
+            }
+        </style>
     </head>
     
     <body ng-app="dirTest">
@@ -11,11 +21,11 @@
         <div ng-controller="dirTestCtrl">
         
         <h1>{{directiveName}}</h1>
-        
+    <div>
         <mj-list
 			   type="m"
                labeldisabled="true" 
-			   selectedobj="selectedObjs"
+			   selected-Items="selectedObjs"
 			   setselection=""
 			   removeitems=false
 			   factoryget="getPlayers"
@@ -26,16 +36,61 @@
 			   order="lnu",
 			   selecttype="select"
 			   ulcssclass="panel-scroll-modal"
-               paginationid="players1">				   	   				
+               paginationid="players1">
+               
         </mj-list>
+     </div> 
+     <div>
+        <mj-list
+			   type="s"
+               labeldisabled="false"
+               showheader = "true"
+               title = "Single Select Example with Panel Title"
+			   selected-Items="selectedObjs2"
+			   setselection=""
+			   removeitems=false
+			   factoryget="getPlayers"
+			   factoryarr="players"					   
+			   factoryname="factory"					   
+			   searchplaceholder="Find a player"
+			   displayproperty="lnu"
+			   order="lnu",
+			   selecttype="select"
+			   ulcssclass="panel-scroll-modal"
+               paginationid="players2">				   	   				
+        </mj-list>
+      </div>
+           <div>
+        <mj-list
+			   type="m"
+               labeldisabled="false"
+               showheader = "true"
+               title = "MultiSelect with Pre-Selected Items and 100 items per page Example with Panel Title"
+			   selected-Items="selectedObjs3"
+			   setselection="preSelectedItems"
+			   removeitems=false
+			   factoryget="getPlayers"
+			   factoryarr="players"					   
+			   factoryname="factory"					   
+			   searchplaceholder="Find a player"
+			   displayproperty="lnu"
+			   order="lnu",
+			   selecttype="select"
+			   ulcssclass="panel-scroll-modal"
+               paginationid="players3"
+               itemid="pid"
+               itemperpage="100">
+               
+        </mj-list>
+     </div> 
             
-        
-            
-           <span ng-if="selectedObjs.length===1" class="badge">{{selectedObjs.length}} player selected</span>
-             <span ng-if="selectedObjs.length>1" class="badge">{{selectedObjs.length}} players selected</span>
             
             
-        
+            
+            
+             <div class="selected">
+                 <pre>{{selectedObjs | json}}</pre>
+            </div>
         </div>
         
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>

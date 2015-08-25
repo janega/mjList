@@ -19,19 +19,22 @@ var mjList = function ($injector){
 			setselection: '=?',//pre selecting items
 			removeitems: '@?',
 			type: '@',//s=single,m=multi select
-			selecttype: '@',//select or link
+			selecttype: '@',//select or link ...link not yet implemented
 			displayproperty: '@?', //name of property rendered in list items
 			icon: '=?',//true or false show icon in upper right hand
 			iconame: '@?',//class name for icon --font awesome or bootstrap3 support
 			ulcssclass: '@?',//class the <ul> will take			
-			factoryname: '@',//name or factory service
+			factoryname: '@',//name of factory service
 			factoryget:'@',//name of method to get containg data
 			factoryarr:'@',//name of array returned from service containing data
-			selectedobj: '=',//passed in from parent scope will hold selected objects
-			paginationid:'@?'
+			selectedItems: '=',//passed in from parent scope will hold the selected items once they are chosen
+            itemid: '@',
+			paginationid:'@?', //declare unique id if using more than one pagination control in one template or page
+            itemperpage: '=?' //number of items per page for pagination --default is 50
+            
 			
 		},
-		transclude: true,
+		//transclude: true,
 		require: 'dir-paginate',
 		controller: function($scope){
 			
@@ -43,6 +46,8 @@ var mjList = function ($injector){
 			if(!angular.isDefined($scope.displayproperty)){ $scope.displayproperty='name';  }
 			if(!angular.isDefined($scope.labeldisabled)){ $scope.labeldisabled=false;  }
 			if(!angular.isDefined($scope.paginationid)){ $scope.paginationid='id';  }
+            if(!angular.isDefined($scope.itemperpage)){ $scope.itemperpage=50;  }
+            if(!angular.isDefined($scope.itemid)){ $scope.itemid='id';  }
 			
 			
 			
@@ -62,8 +67,8 @@ var mjList = function ($injector){
 		    		$scope.selected.pop();//remove previous selection
 		    		$scope.selected.push(item.index);
 					//if(angular.isDefined(selClientObj)){
-						$scope.selectedobj.pop();
-		    	    	$scope.selectedobj.push(item);	
+						$scope.selectedItems.pop();
+		    	    	$scope.selectedItems.push(item);	
 					//}
 					
 		    	}//single select m multi select
@@ -71,11 +76,11 @@ var mjList = function ($injector){
 					var foundPosition = $scope.selected.indexOf(item.index); 
 					if(foundPosition === -1){//it was not found
 						$scope.selected.push(item.index);
-					 	$scope.selectedobj.push(item);
+					 	$scope.selectedItems.push(item);
 					}
 					else{
 						$scope.selected.splice(foundPosition,1);
-					 	$scope.selectedobj.splice(foundPosition,1);						
+					 	$scope.selectedItems.splice(foundPosition,1);						
 				    }
 		    	}
 		    	else{
@@ -100,14 +105,14 @@ var mjList = function ($injector){
 									if(angular.isDefined($scope.setselection) && $scope.setselection.length === 1){//single
 										if(item.id === $scope.setselection[0].id){										
 											$scope.selected.push(key);//set selected item index
-											$scope.selectedobj.push(item);//store select item object
+											$scope.selectedItems.push(item);//store select item object
 										}
 									}
 									else if(angular.isDefined($scope.setselection) && $scope.setselection.length >=1){//multi
 										angular.forEach($scope.setselection,function(i,k){
-											if(item.id === i.id){										
+											if(item[$scope.itemid] === i[$scope.itemid]){										
 												$scope.selected.push(key);//set selected item index
-												$scope.selectedobj.push(item);//store select item object
+												$scope.selectedItems.push(item);//store select item object
 											}
 										});//end second for loop									
 									}
